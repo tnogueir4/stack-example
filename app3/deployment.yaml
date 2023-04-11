@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app3
+  name: app3
+  namespace: webapps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app3
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: app3
+    spec:
+      containers:
+      - name: app3
+        image: tnogueir4/labhome:app3
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+          name: http
+          protocol: TCP
